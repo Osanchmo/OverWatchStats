@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">OverWatchStats</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="platform">
+        <item>PC</item>
+        <item>PS4</item>
+        <item>XBOX ONE</item>
+    </string-array>
+
+    <string-array name="region">
+        <item>eu</item>
+        <item>us</item>
+        <item>kr</item>
+        <item>cn</item>
+        <item>global</item>
+    </string-array>
+
 </resources>
