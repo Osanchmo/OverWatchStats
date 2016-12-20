@@ -9,11 +9,11 @@
     </string-array>
 
     <string-array name="region">
-        <item>eu</item>
-        <item>us</item>
-        <item>kr</item>
-        <item>cn</item>
-        <item>global</item>
+        <item>EU</item>
+        <item>US</item>
+        <item>KR</item>
+        <item>CN</item>
+        <item>Global</item>
     </string-array>
 
 </resources>
