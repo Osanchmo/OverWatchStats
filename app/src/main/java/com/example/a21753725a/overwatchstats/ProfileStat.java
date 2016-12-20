@@ -1,6 +1,6 @@
 package com.example.a21753725a.overwatchstats;
 
-public class ProfileStats {
+public class ProfileStat {
     String username;
     int level;
     int star;

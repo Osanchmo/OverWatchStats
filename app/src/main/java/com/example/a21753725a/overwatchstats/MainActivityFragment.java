@@ -1,5 +1,6 @@
 package com.example.a21753725a.overwatchstats;
 
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 
 public class MainActivityFragment extends Fragment {
 
     String pl;
     String reg;
     String peticio;
-    View view;
     Spinner platform;
     Spinner region;
+    View view;
 
     public MainActivityFragment() {
     }
@@ -61,8 +64,13 @@ public class MainActivityFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String bId =  battleId.getText().toString();
-                //todo change # for - from battleNetID
+                bId = bId.replace("#","-");
+
             peticio = "https://api.lootbox.eu/" + pl + "/" + reg + "/" + bId + "/profile";
+                System.out.println(peticio);
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                ArrayList<ProfileStat> ps = ProfileStatsAPI.getStats("");
             }
         });
         return view;
@@ -103,7 +111,4 @@ public class MainActivityFragment extends Fragment {
         }
         return reg;
     }
-
-
-
 }
