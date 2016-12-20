@@ -6,11 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 
 public class MainActivityFragment extends Fragment {
 
+    String pl;
+    String reg;
+    String peticio;
     View view;
     Spinner platform;
     Spinner region;
@@ -25,12 +30,17 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        view = inflater.inflate(R.layout.fragment_main, container, false);
+        //obtenim el text escrit
+        final EditText battleId = (EditText) view.findViewById(R.id.battleId);
+
+        //llista d'items
         platform = (Spinner) view.findViewById(R.id.platform);
         platform.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectPlatform(i);
+                //switch
+                pl = selectPlatform(i,pl);
             }
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
@@ -40,48 +50,60 @@ public class MainActivityFragment extends Fragment {
         region = (Spinner) view.findViewById(R.id.region);
         region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectRegion(i);
+                reg = selectRegion(i,reg);
             }
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
             }
         });
 
+        final Button button = (Button) view.findViewById(R.id.sendData);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String bId =  battleId.getText().toString();
+                //todo change # for - from battleNetID
+            peticio = "https://api.lootbox.eu/" + pl + "/" + reg + "/" + bId + "/profile";
+            }
+        });
         return view;
     }
 
-    private static void selectPlatform(int i){
+    private static String selectPlatform(int i,String pl){
         switch (i){
             case 0:
-                System.out.println("PC SELECTED");
+                pl = "pc";
                 break;
             case 1:
-                System.out.println("PS4 SELECTED");
+                pl = "ps4";
                 break;
             case 2:
-                System.out.println("XBOX ONE SELECTED");
+                pl = "xbl";
                 break;
         }
+        return pl;
     }
 
-    private static void selectRegion(int i){
+    private static String selectRegion(int i, String reg){
         switch (i){
             case 0:
-                //do
+                reg ="eu";
                 break;
             case 1:
-                //do
+                reg = "us";
                 break;
             case 2:
-                //do
+                reg = "kr";
                 break;
             case 3:
-                //do
+                reg = "cn";
                 break;
             case 4:
-                //do
+                reg = "global";
                 break;
         }
+        return reg;
     }
+
+
 
 }
