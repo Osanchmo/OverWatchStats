@@ -1,8 +1,10 @@
 package com.example.a21753725a.overwatchstats;
 
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,7 @@ public class MainActivityFragment extends Fragment {
     String pl;
     String reg;
     String peticio;
-    Spinner platform;
-    Spinner region;
-    View view;
+    EditText battleId;
 
     public MainActivityFragment() {
     }
@@ -34,17 +34,21 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_main, container, false);
+        final Spinner platform;
+        final Spinner region;
+
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
         //obtenim el text escrit
-        final EditText battleId = (EditText) view.findViewById(R.id.battleId);
+        battleId = (EditText) view.findViewById(R.id.battleId);
 
         //llista d'items
         platform = (Spinner) view.findViewById(R.id.platform);
         platform.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //switch
-                pl = selectPlatform(i,pl);
+                pl = selectPlatform(i, pl);
             }
+
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
             }
@@ -53,8 +57,9 @@ public class MainActivityFragment extends Fragment {
         region = (Spinner) view.findViewById(R.id.region);
         region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                reg = selectRegion(i,reg);
+                reg = selectRegion(i, reg);
             }
+
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
             }
@@ -63,21 +68,18 @@ public class MainActivityFragment extends Fragment {
         final Button button = (Button) view.findViewById(R.id.sendData);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String bId =  battleId.getText().toString();
-                bId = bId.replace("#","-");
+                String bId = battleId.getText().toString();
+                bId = bId.replace("#", "-");
+                peticio = "https://api.lootbox.eu/" + pl + "/" + reg + "/" + bId + "/profile";
 
-            peticio = "https://api.lootbox.eu/" + pl + "/" + reg + "/" + bId + "/profile";
-                System.out.println(peticio);
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-                ArrayList<ProfileStat> ps = ProfileStatsAPI.getStats("");
+                getData();
             }
         });
         return view;
     }
 
-    private static String selectPlatform(int i,String pl){
-        switch (i){
+    private String selectPlatform(int i, String pl) {
+        switch (i) {
             case 0:
                 pl = "pc";
                 break;
@@ -91,10 +93,10 @@ public class MainActivityFragment extends Fragment {
         return pl;
     }
 
-    private static String selectRegion(int i, String reg){
-        switch (i){
+    private String selectRegion(int i, String reg) {
+        switch (i) {
             case 0:
-                reg ="eu";
+                reg = "eu";
                 break;
             case 1:
                 reg = "us";
@@ -110,5 +112,33 @@ public class MainActivityFragment extends Fragment {
                 break;
         }
         return reg;
+    }
+
+    private void getData() {
+        RefreshDataTask task = new RefreshDataTask();
+        task.execute();
+    }
+
+    private class RefreshDataTask extends AsyncTask<Void, Void, ProfileStat> {
+        @Override
+        protected ProfileStat doInBackground(Void... voids) {
+
+            ProfileStatsAPI api = new ProfileStatsAPI();
+            ProfileStat result;
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            result = api.getStats(peticio);
+
+            return result;
+        }
+        protected void onPostExecute(ProfileStat stat) {
+            if (stat == null) {
+                battleId.setError("Username not found");
+            } else {
+            //TODO send stat with intent making a new fragment that shows the info
+            }
+
+        }
     }
 }

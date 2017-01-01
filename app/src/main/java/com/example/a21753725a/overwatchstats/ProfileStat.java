@@ -2,19 +2,37 @@ package com.example.a21753725a.overwatchstats;
 
 public class ProfileStat {
     String username;
-    int level;
-    int star;
-    int quickGameWins;
-    int competitiveRank;
+    String level;
+    String rank;
 
+    String quickGameWins;
+    String competitiveRank;
     // competitive wins - lost - played
-    int[] competitive = new int[3];
+    String[] competitive = new String[3];
     //quickgame - competitive
-    int[] playTime = new int[2];
+    String[] playTime = new String[2];
 
     //images
     String levelFrame;
     String avatar;
+    String star;
+    String rankImg;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getRankImg() {
+        return rankImg;
+    }
+
+    public void setRankImg(String rankImg) {
+        this.rankImg = rankImg;
+    }
 
     public String getUsername() {
         return username;
@@ -24,52 +42,52 @@ public class ProfileStat {
         this.username = username;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
-    public int getStar() {
+    public String getStar() {
         return star;
     }
 
-    public void setStar(int star) {
+    public void setStar(String star) {
         this.star = star;
     }
 
-    public int getQuickGameWins() {
+    public String getQuickGameWins() {
         return quickGameWins;
     }
 
-    public void setQuickGameWins(int quickGameWins) {
+    public void setQuickGameWins(String quickGameWins) {
         this.quickGameWins = quickGameWins;
     }
 
-    public int getCompetitiveRank() {
+    public String getCompetitiveRank() {
         return competitiveRank;
     }
 
-    public void setCompetitiveRank(int competitiveRank) {
+    public void setCompetitiveRank(String competitiveRank) {
         this.competitiveRank = competitiveRank;
     }
 
-    public int[] getCompetitive() {
-        return competitive;
-    }
-
-    public void setCompetitive(int[] competitive) {
-        this.competitive = competitive;
-    }
-
-    public int[] getPlayTime() {
+    public String[] getPlayTime() {
         return playTime;
     }
 
-    public void setPlayTime(int[] playTime) {
+    public void setPlayTime(String[] playTime) {
         this.playTime = playTime;
+    }
+
+    public String[] getCompetitive() {
+        return competitive;
+    }
+
+    public void setCompetitive(String[] competitive) {
+        this.competitive = competitive;
     }
 
     public String getLevelFrame() {

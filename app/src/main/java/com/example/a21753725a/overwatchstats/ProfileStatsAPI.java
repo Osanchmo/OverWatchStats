@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class ProfileStatsAPI {
 
-    public static ArrayList<ProfileStat> getStats(String BASE_URL) {
-    BASE_URL = "https://api.lootbox.eu/pc/eu/EVERMORE-31643/profile";
+    public ProfileStat getStats(String BASE_URL) {
+    //BASE_URL = "https://api.lootbox.eu/pc/eu/EVERMORE-31643/profile";
 
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
@@ -24,7 +24,7 @@ public class ProfileStatsAPI {
     }
 
     @Nullable
-    private static ArrayList<ProfileStat> doCall(String url) {
+    private ProfileStat doCall(String url) {
         try {
             String JsonResponse = HttpUtils.get(url);
             return processJson(JsonResponse);
@@ -41,45 +41,48 @@ public class ProfileStatsAPI {
      * @param jsonResponse
      * @return
      */
-    private static ArrayList<ProfileStat> processJson(String jsonResponse) {
+    private ProfileStat processJson(String jsonResponse) {
 
-        ArrayList<ProfileStat> stats = new ArrayList<>();
+        ProfileStat stat = new ProfileStat();
 
         try {
-            JSONObject data = new JSONObject(jsonResponse);
-            JSONArray jsonStats = data.getJSONArray("data");
+            JSONObject objct = new JSONObject(jsonResponse);
+            JSONObject data = objct.getJSONObject("data");
+            JSONObject aux;
 
-            for (int i = 0; i < jsonStats.length(); i++) {
+            ProfileStat ps = new ProfileStat();
+            ps.setUsername(data.getString("username"));
+            ps.setLevel(String.valueOf(data.getString("level")));
 
-                JSONObject jsonStat = jsonStats.getJSONObject(i);
+            aux = data.getJSONObject("games");
+            ps.setQuickGameWins(aux.getJSONObject("quick").getString("wins"));
+            String[] strings = new String[3];
+                strings[0] = aux.getJSONObject("competitive").getString("wins");
+                strings[1] = aux.getJSONObject("competitive").getString("lost");
+                strings[2] = aux.getJSONObject("competitive").getString("played");
+            ps.setCompetitive(strings);
+            aux = data.getJSONObject("playtime");
+            strings = new String[2];
+                strings[0] = aux.getString("quick");
+                strings[1] = aux.getString("competitive");
+            ps.setPlayTime(strings);
 
-                ProfileStat ps = new ProfileStat();
+            ps.setAvatar(data.getString("avatar"));
+            ps.setLevelFrame(data.getString("levelFrame"));
+            ps.setStar(data.getString("star"));
 
-                ps.setUsername(jsonStat.getString("username"));
+            aux = data.getJSONObject("competitive");
+            ps.setRank(aux.getString("rank"));
+            ps.setRankImg(aux.getString("rank_img"));
 
-                System.out.println(ps.username);
+            System.out.println(ps.getLevel());
+            System.out.println(ps.getUsername());
 
-
-              /*  Card carta = new Card();
-
-                carta.setName(jsonCard.getString("name"));
-                carta.setRarity(jsonCard.getString("rarity"));
-                carta.setType(jsonCard.getString("type"));
-                carta.setImagen(jsonCard.getString("imageUrl"));
-
-                if (jsonCard.has("text")) carta.setTexto(jsonCard.getString("text"));
-                if (jsonCard.has("toughness"))
-                    carta.setResistencia(jsonCard.getString("toughness"));
-                if (jsonCard.has("power")) carta.setFuerza(jsonCard.getString("power"));
-                if (jsonCard.has("colors")) carta.setColores(jsonCard.getString("colors"));
-
-                cartas.add(carta);*/
-            }
         } catch (JSONException e) {
-            e.printStackTrace();
+            stat  = null;
         }
 
-        return stats;
+        return stat;
     }
 }
 
