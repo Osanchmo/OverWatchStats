@@ -1,6 +1,8 @@
 package com.example.a21753725a.overwatchstats;
 
-public class ProfileStat {
+import java.io.Serializable;
+
+public class ProfileStat implements Serializable {
     String username;
     String level;
     String rank;

@@ -1,5 +1,6 @@
 package com.example.a21753725a.overwatchstats;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -136,7 +137,10 @@ public class MainActivityFragment extends Fragment {
             if (stat == null) {
                 battleId.setError("Username not found");
             } else {
-            //TODO send stat with intent making a new fragment that shows the info
+
+                Intent intent = new Intent(getContext(), ProfileFragment.class);
+                intent.putExtra("stat",stat);
+                startActivity(intent);
             }
 
         }
