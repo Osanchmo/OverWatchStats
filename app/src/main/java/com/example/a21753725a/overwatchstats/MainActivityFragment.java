@@ -138,7 +138,7 @@ public class MainActivityFragment extends Fragment {
                 battleId.setError("Username not found");
             } else {
 
-                Intent intent = new Intent(getContext(), ProfileFragment.class);
+                Intent intent = new Intent(getContext(), ProfileActivty.class);
                 intent.putExtra("stat",stat);
                 startActivity(intent);
             }
