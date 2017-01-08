@@ -121,23 +121,23 @@ public class MainActivityFragment extends Fragment {
     }
 
     private class RefreshDataTask extends AsyncTask<Void, Void, ProfileStat> {
+        ProfileStat stat;
         @Override
         protected ProfileStat doInBackground(Void... voids) {
 
             ProfileStatsAPI api = new ProfileStatsAPI();
-            ProfileStat result;
-
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            result = api.getStats(peticio);
 
-            return result;
+            stat = api.getStats(peticio);
+
+            return stat;
         }
-        protected void onPostExecute(ProfileStat stat) {
+
+        protected void onPostExecute() {
             if (stat == null) {
                 battleId.setError("Username not found");
             } else {
-
                 Intent intent = new Intent(getContext(), ProfileActivty.class);
                 intent.putExtra("stat",stat);
                 startActivity(intent);
