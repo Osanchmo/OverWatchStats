@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -122,9 +123,18 @@ public class ProfileActivty extends AppCompatActivity {
 
             ImageView avatarImg = (ImageView) rootView.findViewById(R.id.avatarImg);
 
+            TextView competitive = (TextView) rootView.findViewById(R.id.ranked);
+                competitive.setText("RANKED \n GAME");
+                competitive.setTypeface(font);
+            TextView rapid = (TextView) rootView.findViewById(R.id.rapid);
+                rapid.setText("RAPID \n GAME");
+                rapid.setTypeface(font);
             TextView username = (TextView) rootView.findViewById(R.id.userName);
-            username.setTypeface(font);
-            username.setText(stat.getUsername());
+                username.setText(stat.getUsername());
+                username.setTypeface(font);
+            TextView rnkdplayed = (TextView) rootView.findViewById(R.id.rnkdPlayed);
+                //rnkdplayed.setText(Html.fromHtml("WINS: " + "<font color=red>" + stat.getCompetitive(2) + "</font>"));
+                //TODO GENERATE DATA
 
             Glide.with(this).load(stat.getAvatar()).bitmapTransform(new CropCircleTransformation(this.getContext())).into(avatarImg);
 

@@ -84,8 +84,8 @@ public class ProfileStat implements Serializable {
         this.playTime = playTime;
     }
 
-    public String[] getCompetitive() {
-        return competitive;
+    public String getCompetitive(int i) {
+        return competitive[i];
     }
 
     public void setCompetitive(String[] competitive) {
