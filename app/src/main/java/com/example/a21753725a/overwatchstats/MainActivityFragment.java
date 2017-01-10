@@ -1,5 +1,6 @@
 package com.example.a21753725a.overwatchstats;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -119,7 +120,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private class RefreshDataTask extends AsyncTask<Void, Void, ProfileStat> {
-
+        private ProgressDialog pDialog;
         @Override
         protected ProfileStat doInBackground(Void... voids) {
 
@@ -135,15 +136,22 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            pDialog = new ProgressDialog(getContext());
+            pDialog.setMessage("Cargando...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
         }
 
         @Override
         protected void onPostExecute(ProfileStat stat) {
             super.onPostExecute(stat);
+
             if (stat == null) {
+                pDialog.dismiss();
                 battleId.setError("Username not found");
             } else {
+                pDialog.dismiss();
                 Intent intent = new Intent(getContext(), ProfileActivty.class);
                 intent.putExtra("stat",stat);
                 startActivity(intent);

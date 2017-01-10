@@ -1,5 +1,6 @@
 package com.example.a21753725a.overwatchstats;
 
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +22,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 public class ProfileActivty extends AppCompatActivity {
 
     private static ProfileStat stat;
+    private static Typeface font;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -45,6 +51,7 @@ public class ProfileActivty extends AppCompatActivity {
         setContentView(R.layout.activity_profile_activty);
 
         stat = (ProfileStat) getIntent().getSerializableExtra("stat");
+        font = Typeface.createFromAsset(getAssets(),  "font/ow.ttf");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,6 +92,7 @@ public class ProfileActivty extends AppCompatActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -110,9 +118,16 @@ public class ProfileActivty extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_profile_activty, container, false);
+
+
             ImageView avatarImg = (ImageView) rootView.findViewById(R.id.avatarImg);
 
-            Glide.with(this).load(stat.getAvatar()).into(avatarImg);
+            TextView username = (TextView) rootView.findViewById(R.id.userName);
+            username.setTypeface(font);
+            username.setText(stat.getUsername());
+
+            Glide.with(this).load(stat.getAvatar()).bitmapTransform(new CropCircleTransformation(this.getContext())).into(avatarImg);
+
             return rootView;
         }
     }
