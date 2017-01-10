@@ -2,9 +2,9 @@ package com.example.a21753725a.overwatchstats;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import java.util.ArrayList;
 
 
 public class MainActivityFragment extends Fragment {
@@ -121,7 +119,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private class RefreshDataTask extends AsyncTask<Void, Void, ProfileStat> {
-        ProfileStat stat;
+
         @Override
         protected ProfileStat doInBackground(Void... voids) {
 
@@ -129,12 +127,20 @@ public class MainActivityFragment extends Fragment {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            stat = api.getStats(peticio);
+            ProfileStat stat = api.getStats(peticio);
 
             return stat;
         }
 
-        protected void onPostExecute() {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected void onPostExecute(ProfileStat stat) {
+            super.onPostExecute(stat);
             if (stat == null) {
                 battleId.setError("Username not found");
             } else {
@@ -142,7 +148,6 @@ public class MainActivityFragment extends Fragment {
                 intent.putExtra("stat",stat);
                 startActivity(intent);
             }
-
         }
     }
 }

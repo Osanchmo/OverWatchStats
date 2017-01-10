@@ -43,14 +43,14 @@ public class ProfileStatsAPI {
      */
     private ProfileStat processJson(String jsonResponse) {
 
-        ProfileStat stat = new ProfileStat();
+        ProfileStat ps = new ProfileStat();
 
         try {
             JSONObject objct = new JSONObject(jsonResponse);
             JSONObject data = objct.getJSONObject("data");
             JSONObject aux;
 
-            ProfileStat ps = new ProfileStat();
+
             ps.setUsername(data.getString("username"));
             ps.setLevel(String.valueOf(data.getString("level")));
 
@@ -75,14 +75,13 @@ public class ProfileStatsAPI {
             ps.setRank(aux.getString("rank"));
             ps.setRankImg(aux.getString("rank_img"));
 
-            System.out.println(ps.getLevel());
-            System.out.println(ps.getUsername());
+
 
         } catch (JSONException e) {
-            stat  = null;
+            ps  = null;
+            System.out.println(e);
         }
-
-        return stat;
+        return ps;
     }
 }
 

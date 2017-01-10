@@ -19,8 +19,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class ProfileActivty extends AppCompatActivity {
 
+    private static ProfileStat stat;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -40,7 +43,9 @@ public class ProfileActivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_activty);
-        ProfileStat stat = (ProfileStat) getIntent().getSerializableExtra("stat");
+
+        stat = (ProfileStat) getIntent().getSerializableExtra("stat");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -107,8 +112,7 @@ public class ProfileActivty extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_profile_activty, container, false);
             ImageView avatarImg = (ImageView) rootView.findViewById(R.id.avatarImg);
 
-
-            //TODO ADD DATA FROM INTENT
+            Glide.with(this).load(stat.getAvatar()).into(avatarImg);
             return rootView;
         }
     }
