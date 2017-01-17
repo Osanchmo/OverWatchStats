@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OverWatchStats.iml" filepath="$PROJECT_DIR$/OverWatchStats.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OverWatchStatsDef.iml" filepath="$PROJECT_DIR$/OverWatchStatsDef.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OverWatchStatss.iml" filepath="$PROJECT_DIR$/OverWatchStatss.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
