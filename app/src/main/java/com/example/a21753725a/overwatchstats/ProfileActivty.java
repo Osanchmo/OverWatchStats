@@ -61,7 +61,7 @@ public class ProfileActivty extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        
+
     }
 
 
@@ -118,20 +118,30 @@ public class ProfileActivty extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_profile_activty, container, false);
 
+            TextView username = (TextView) rootView.findViewById(R.id.userName);
+            username.setText(stat.getUsername());
+            TextView rank = (TextView) rootView.findViewById(R.id.rank);
+            rank.setText(stat.getRank());
+
+            TextView played = (TextView) rootView.findViewById(R.id.playedN);
+            played.setText(stat.getCompetitive(2));
+            TextView won = (TextView) rootView.findViewById(R.id.winN);
+            won.setText(stat.getCompetitive(0));
+            TextView lost = (TextView) rootView.findViewById(R.id.lostN);
+            lost.setText(stat.getCompetitive(1));
+
+            ImageView rankImg = (ImageView) rootView.findViewById(R.id.rankImg);
+            Glide.with(this).load(stat.getRankImg()).into(rankImg);
 
             ImageView avatarImg = (ImageView) rootView.findViewById(R.id.avatarImg);
-
-           /** TextView competitive = (TextView) rootView.findViewById(R.id.ranked);
-                competitive.setText("RANKED \n GAME");
-            TextView rapid = (TextView) rootView.findViewById(R.id.rapid);
-                rapid.setText("RAPID \n GAME");
-            TextView username = (TextView) rootView.findViewById(R.id.userName);
-                username.setText(stat.getUsername());
-            TextView rnkdplayed = (TextView) rootView.findViewById(R.id.rnkdPlayed);
-                //rnkdplayed.setText(Html.fromHtml("WINS: " + "<font color=red>" + stat.getCompetitive(2) + "</font>"));Ç**/
-                //TODO GENERATE DATA
-
             Glide.with(this).load(stat.getAvatar()).bitmapTransform(new CropCircleTransformation(this.getContext())).into(avatarImg);
+
+            ImageView borderImg = (ImageView) rootView.findViewById(R.id.borderImg);
+            Glide.with(this).load(stat.getLevelFrame()).into(borderImg);
+
+            ImageView starImg = (ImageView) rootView.findViewById(R.id.star);
+            Glide.with(this).load(stat.getStar()).into(starImg);
+
 
             return rootView;
         }
@@ -149,18 +159,23 @@ public class ProfileActivty extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return PlaceholderFragment.newInstance(0);
+                case 1:
+                    return HeroStatsTime.newInstance(0);
+            }
+            return null;
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
-        @Override
+
+       /** @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
@@ -171,6 +186,6 @@ public class ProfileActivty extends AppCompatActivity {
                     return "SECTION 3";
             }
             return null;
-        }
+        }**/
     }
 }
