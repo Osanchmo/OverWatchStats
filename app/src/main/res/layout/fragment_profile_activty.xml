@@ -5,6 +5,72 @@
     android:layout_height="match_parent"
     tools:context="com.example.a21753725a.overwatchstats.ProfileActivty$PlaceholderFragment">
 
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/playTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/playtime"
+        android:textSize="40sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickWonGames" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/qPlayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/customTextView17" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/rPlayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quick" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/customTextView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/quick"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playTime" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/quick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/ranked"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qPlayTime" />
+
     <ImageView
         android:layout_width="128dp"
         android:layout_height="128dp"
@@ -75,20 +141,32 @@
         android:layout_marginRight="16dp" />
 
     <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/quickPlayTit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/type"
-        android:fontFamily="sans-serif"
-        android:textSize="40sp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/quick"
+        android:textSize="40sp"
         app:layout_constraintTop_toBottomOf="@+id/avatarImg"
-        android:text="@string/ranked" />
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/customTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/ranked"
+        android:textSize="40sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImg" />
 
     <com.example.a21753725a.overwatchstats.CustomTextView
         android:layout_width="wrap_content"
@@ -99,8 +177,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@+id/rnkdLost"
         android:textColor="#F40000" />
@@ -114,8 +190,6 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/winN"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp" />
@@ -127,28 +201,50 @@
         android:textSize="24sp"
         android:text="@string/played"
         android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/type"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/customTextView"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/QuickWon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/playedN"
-        android:textSize="24sp"
-        android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/rnkdPlayed"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/won"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quickPlayTit" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/quickWonGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#00E30F"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QuickWon" />
+
+    <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/playedN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/rnkdPlayed" />
 
     <com.example.a21753725a.overwatchstats.CustomTextView
         android:layout_width="wrap_content"
@@ -160,32 +256,29 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/playedN"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/playedN" />
 
     <com.example.a21753725a.overwatchstats.CustomTextView
+        android:id="@+id/winN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/winN"
-        android:textSize="24sp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/rnkdWins"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        android:textColor="#00E30F" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#00E30F"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rnkdWins" />
 
     <ImageView
-        app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/rankImg"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:contentDescription="rank"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
 
 </android.support.constraint.ConstraintLayout>

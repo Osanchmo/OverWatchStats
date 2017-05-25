@@ -76,8 +76,8 @@ public class ProfileStat implements Serializable {
         this.competitiveRank = competitiveRank;
     }
 
-    public String[] getPlayTime() {
-        return playTime;
+    public String getPlayTime(int i) {
+        return playTime[i];
     }
 
     public void setPlayTime(String[] playTime) {

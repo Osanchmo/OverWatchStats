@@ -70,7 +70,7 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View v) {
                 String bId = battleId.getText().toString();
                 bId = bId.replace("#", "-");
-                peticio = "https://api.lootbox.eu/" + pl + "/" + reg + "/" + bId + "/profile";
+                peticio = "http://ow-api.herokuapp.com/profile/" + pl + "/" + reg + "/" + bId;
 
                 getData();
             }

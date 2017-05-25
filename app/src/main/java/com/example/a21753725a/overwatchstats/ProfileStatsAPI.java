@@ -47,35 +47,33 @@ public class ProfileStatsAPI {
 
         try {
             JSONObject objct = new JSONObject(jsonResponse);
-            JSONObject data = objct.getJSONObject("data");
             JSONObject aux;
 
 
-            ps.setUsername(data.getString("username"));
-            ps.setLevel(String.valueOf(data.getString("level")));
+            ps.setUsername(objct.getString("username"));
+            ps.setLevel(String.valueOf(objct.getString("level")));
 
-            aux = data.getJSONObject("games");
-            ps.setQuickGameWins(aux.getJSONObject("quick").getString("wins"));
+            aux = objct.getJSONObject("games");
+            ps.setQuickGameWins(aux.getJSONObject("quickplay").getString("wins"));
             String[] strings = new String[3];
                 strings[0] = aux.getJSONObject("competitive").getString("wins");
-                strings[1] = aux.getJSONObject("competitive").getString("lost");
                 strings[2] = aux.getJSONObject("competitive").getString("played");
+                strings[1] = String.valueOf(Integer.valueOf(strings[2]) - Integer.valueOf(strings[0]));
+
             ps.setCompetitive(strings);
-            aux = data.getJSONObject("playtime");
+            aux = objct.getJSONObject("playtime");
             strings = new String[2];
-                strings[0] = aux.getString("quick");
+                strings[0] = aux.getString("quickplay");
                 strings[1] = aux.getString("competitive");
             ps.setPlayTime(strings);
 
-            ps.setAvatar(data.getString("avatar"));
-            ps.setLevelFrame(data.getString("levelFrame"));
-            ps.setStar(data.getString("star"));
+            ps.setAvatar(objct.getString("portrait"));
+            ps.setLevelFrame(objct.getString("levelFrame"));
+            ps.setStar(objct.getString("star"));
 
-            aux = data.getJSONObject("competitive");
+            aux = objct.getJSONObject("competitive");
             ps.setRank(aux.getString("rank"));
             ps.setRankImg(aux.getString("rank_img"));
-
-
 
         } catch (JSONException e) {
             ps  = null;

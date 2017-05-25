@@ -15,11 +15,17 @@
         <item>CN</item>
         <item>Global</item>
     </string-array>
-    <string name="title_activity_profile_activty">ProfileActivty</string>
+    <string name="title_activity_profile_activty">ProfileActivity</string>
     <string name="ranked">RANKED</string>
+
     <string name="played">PLAYED GAMES</string>
     <string name="won">WON GAMES</string>
     <string name="lost">LOST GAMES</string>
+    <string name="quick">QUICKPLAY</string>
+    <string name="quickWin">WINS</string>
+    <string name="playtime">PLAYTIME</string>
+    <string name="quickTime">QUICKGAME</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
