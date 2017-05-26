@@ -1,6 +1,7 @@
 package com.example.a21753725a.overwatchstats;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ProfileStat implements Serializable {
     String username;
@@ -19,6 +20,8 @@ public class ProfileStat implements Serializable {
     String avatar;
     String star;
     String rankImg;
+
+    ArrayList<Hero> heroes;
 
     public String getRank() {
         return rank;
@@ -106,5 +109,13 @@ public class ProfileStat implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public ArrayList<Hero> getHeroes() {
+        return heroes;
+    }
+
+    public void setHeroes(ArrayList<Hero> heroes) {
+        this.heroes = heroes;
     }
 }

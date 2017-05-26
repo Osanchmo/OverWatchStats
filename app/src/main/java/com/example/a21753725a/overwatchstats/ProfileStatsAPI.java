@@ -12,10 +12,18 @@ import java.util.ArrayList;
 
 public class ProfileStatsAPI {
 
-    public ProfileStat getStats(String BASE_URL) {
+    String PROF_URL;
+    String HERO_URL;
+
+    public ProfileStatsAPI(String PROF_URL, String HERO_URL) {
+        this.PROF_URL = PROF_URL;
+        this.HERO_URL = HERO_URL;
+    }
+
+    public ProfileStat getStats() {
     //BASE_URL = "https://api.lootbox.eu/pc/eu/EVERMORE-31643/profile";
 
-        Uri builtUri = Uri.parse(BASE_URL)
+        Uri builtUri = Uri.parse(PROF_URL)
                 .buildUpon()
                 .build();
         String url = builtUri.toString();
@@ -44,11 +52,9 @@ public class ProfileStatsAPI {
     private ProfileStat processJson(String jsonResponse) {
 
         ProfileStat ps = new ProfileStat();
-
         try {
             JSONObject objct = new JSONObject(jsonResponse);
             JSONObject aux;
-
 
             ps.setUsername(objct.getString("username"));
             ps.setLevel(String.valueOf(objct.getString("level")));
@@ -74,6 +80,9 @@ public class ProfileStatsAPI {
             aux = objct.getJSONObject("competitive");
             ps.setRank(aux.getString("rank"));
             ps.setRankImg(aux.getString("rank_img"));
+
+            HeroesAPI heroes = new HeroesAPI();
+            ps.setHeroes(heroes.getStats(HERO_URL));
 
         } catch (JSONException e) {
             ps  = null;

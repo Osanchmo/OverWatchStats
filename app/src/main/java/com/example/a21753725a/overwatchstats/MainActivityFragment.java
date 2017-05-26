@@ -21,6 +21,7 @@ public class MainActivityFragment extends Fragment {
     String pl;
     String reg;
     String peticio;
+    String heroPet;
     EditText battleId;
 
     public MainActivityFragment() {
@@ -71,7 +72,7 @@ public class MainActivityFragment extends Fragment {
                 String bId = battleId.getText().toString();
                 bId = bId.replace("#", "-");
                 peticio = "http://ow-api.herokuapp.com/profile/" + pl + "/" + reg + "/" + bId;
-
+                heroPet = "http://ow-api.herokuapp.com/stats/" + pl + "/" + reg + "/" + bId;
                 getData();
             }
         });
@@ -124,11 +125,11 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected ProfileStat doInBackground(Void... voids) {
 
-            ProfileStatsAPI api = new ProfileStatsAPI();
+            ProfileStatsAPI api = new ProfileStatsAPI(peticio,heroPet);
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            ProfileStat stat = api.getStats(peticio);
+            ProfileStat stat = api.getStats();
 
             return stat;
         }
