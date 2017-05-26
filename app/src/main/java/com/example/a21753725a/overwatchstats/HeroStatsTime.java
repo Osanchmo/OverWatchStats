@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -14,13 +15,13 @@ import android.view.ViewGroup;
 public class HeroStatsTime extends Fragment {
 
     View view;
+    static ProfileStat profStat;
     public HeroStatsTime() {
         // Required empty public constructor
     }
-    public static HeroStatsTime newInstance(int sectionNumber) {
+    public static HeroStatsTime newInstance(ProfileStat stat) {
         HeroStatsTime fragment = new HeroStatsTime();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        profStat = stat;
         return fragment;
     }
 
@@ -30,6 +31,8 @@ public class HeroStatsTime extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_hero_stats_time, container, false);
 
+        TextView name = (TextView) view.findViewById(R.id.txt);
+        name.setText(profStat.getUsername());
 
 
         return view;
