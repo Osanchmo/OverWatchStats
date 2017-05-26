@@ -43,7 +43,7 @@ public class HeroesAPI {
     private ArrayList<Hero> processJson(String jsonResponse) {
         ArrayList<Hero> heroes = new ArrayList<>();
 
-        Hero hero = new Hero();
+
 
         try {
             JSONObject objct = new JSONObject(jsonResponse);
@@ -54,11 +54,7 @@ public class HeroesAPI {
             for (int i = 0; i < comp.length(); i++) {
 
                 JSONObject obj = comp.getJSONObject(i);
-
-                hero.setName(obj.getString("hero"));
-                hero.setPlaytime(obj.getString("played"));
-                hero.setPath(obj.getString("img"));
-                System.out.println(hero.getName());
+                Hero hero = new Hero(obj.getString("hero"),obj.getString("played"),obj.getString("img"));
                 heroes.add(hero);
             }
 

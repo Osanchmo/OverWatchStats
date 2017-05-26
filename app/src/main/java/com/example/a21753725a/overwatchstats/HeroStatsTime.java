@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -31,9 +33,10 @@ public class HeroStatsTime extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_hero_stats_time, container, false);
 
-        TextView name = (TextView) view.findViewById(R.id.txt);
-        name.setText(profStat.getUsername());
+        ListView lvHero = (ListView) view.findViewById(R.id.lvHeroes);
+        ArrayAdapter adapter = new HEROAdapter(getContext(),R.layout.hero_list_view, profStat.getHeroes());
 
+        lvHero.setAdapter(adapter);
 
         return view;
     }

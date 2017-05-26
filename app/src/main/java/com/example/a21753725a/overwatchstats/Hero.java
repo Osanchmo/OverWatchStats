@@ -13,6 +13,12 @@ public class Hero implements Serializable {
     float playtime;
     String path;
 
+    public Hero(String name, String time, String path) {
+        this.name = name;
+        setPlaytime(time);
+        this.path = path;
+    }
+
     public String getName() {
         return name;
     }
