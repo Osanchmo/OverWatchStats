@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public class Hero implements Serializable {
     String name;
-    float playtime;
+    String playtime;
     String path;
 
     public Hero(String name, String time, String path) {
@@ -27,7 +27,7 @@ public class Hero implements Serializable {
         this.name = name;
     }
 
-    public float getPlaytime() {
+    public String getPlaytime() {
         return playtime;
     }
 
@@ -35,15 +35,9 @@ public class Hero implements Serializable {
 
         Log.d(time, time);
         if (time.equals("--")){
-            playtime = 0;
+            playtime = "0 minutes";
         } else {
-            String[] tiempo = time.split(" ");
-
-            if (tiempo[1].equals("minutes")) {
-                playtime = Integer.valueOf(tiempo[0]) / 100;
-            } else {
-                playtime = Integer.valueOf(tiempo[0]);
-            }
+            playtime = time;
         }
     }
 

@@ -60,9 +60,9 @@ public class ProfileStatsAPI {
             ps.setLevel(String.valueOf(objct.getString("level")));
 
             aux = objct.getJSONObject("games");
-            ps.setQuickGameWins(aux.getJSONObject("quickplay").getString("wins"));
+            ps.setQuickGameWins(aux.getJSONObject("quickplay").getString("won"));
             String[] strings = new String[3];
-                strings[0] = aux.getJSONObject("competitive").getString("wins");
+                strings[0] = aux.getJSONObject("competitive").getString("won");
                 strings[2] = aux.getJSONObject("competitive").getString("played");
                 strings[1] = String.valueOf(Integer.valueOf(strings[2]) - Integer.valueOf(strings[0]));
 
@@ -78,9 +78,12 @@ public class ProfileStatsAPI {
             ps.setStar(objct.getString("star"));
 
             aux = objct.getJSONObject("competitive");
-            ps.setRank(aux.getString("rank"));
-            ps.setRankImg(aux.getString("rank_img"));
-
+            try {
+                ps.setRank(aux.getString("rank"));
+                ps.setRankImg(aux.getString("rank_img"));
+            }catch (Exception E){
+                ps.setRank("--");
+            }
             HeroesAPI heroes = new HeroesAPI();
             ps.setHeroes(heroes.getStats(HERO_URL));
 

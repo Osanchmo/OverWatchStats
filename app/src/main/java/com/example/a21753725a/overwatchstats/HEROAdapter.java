@@ -47,7 +47,7 @@ public class HEROAdapter extends ArrayAdapter<Hero> {
         ImageView imHero = (ImageView) convertView.findViewById(R.id.heroPortrait);
 
         tvHero.setText(item.getName());
-        tvPlayedTime.setText(item.getPlaytime() + " Hours");
+        tvPlayedTime.setText(item.getPlaytime());
         Glide.with(getContext()).load(item.getPath()).into(imHero);
         return convertView;
 
